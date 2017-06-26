@@ -21,6 +21,9 @@ import java.util.Comparator;
 import java.util.List;
 
 
+/**
+ * Linear布局item拖动和移动
+ */
 public class ItemTouchHelperActivity extends AppCompatActivity implements ItemDragListener {
 
     private List<String> mData = new ArrayList<>();
@@ -63,7 +66,9 @@ public class ItemTouchHelperActivity extends AppCompatActivity implements ItemDr
         // 设置 item间隔
         mRv.addItemDecoration(new SpaceItemDecoration(40));
 
-        mCallback = new ItemTouchHelperCallback(mAdapter);
+        // 不可长按拖动 和 侧滑删除
+        mCallback = new ItemTouchHelperCallback(mAdapter,true,true);
+//        mCallback = new ItemTouchHelperCallback(mAdapter);
         mItemTouchHelper = new ItemTouchHelper(mCallback);
         mItemTouchHelper.attachToRecyclerView(mRv);
 
