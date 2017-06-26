@@ -7,12 +7,15 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import com.zs.helper.myitemtouchhelper.listener.ItemMoveListener;
 
 
-public class MyItemTouchHelperCallback extends ItemTouchHelper.Callback {
+public class ItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
     ItemMoveListener mItemMoveListener;
 
+    private int dragFlags;
+    private int swipeFlags;
 
-    public MyItemTouchHelperCallback(ItemMoveListener itemMoveListener) {
+
+    public ItemTouchHelperCallback(ItemMoveListener itemMoveListener) {
         mItemMoveListener = itemMoveListener;
     }
 
@@ -24,10 +27,26 @@ public class MyItemTouchHelperCallback extends ItemTouchHelper.Callback {
      */
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-        int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-        int swipeFlags = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
+
+        // 如果你不想上下拖动，可以将 dragFlags = 0
+        dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
+
+        // 如果你不想左右滑动，可以将 swipeFlags = 0
+        swipeFlags = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
+
+        //最终的动作标识（flags）必须要用makeMovementFlags()方法生成
         int flags = makeMovementFlags(dragFlags, swipeFlags);
         return flags;
+    }
+
+    public void setLongPressDragEnabled(int drafFlag){
+        dragFlags = drafFlag;
+        makeMovementFlags(dragFlags, swipeFlags);
+    }
+
+    public void setItemViewSwipeEnabled(int swipeFlag){
+        swipeFlags = swipeFlag;
+        makeMovementFlags(dragFlags, swipeFlags);
     }
 
     /**

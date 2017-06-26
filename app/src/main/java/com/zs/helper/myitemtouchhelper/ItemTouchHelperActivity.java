@@ -6,12 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.View;
 
 import com.zs.helper.myitemtouchhelper.adapter.ItemTouchHelperAdapter;
-import com.zs.helper.myitemtouchhelper.callback.MyItemTouchHelperCallback;
+import com.zs.helper.myitemtouchhelper.callback.ItemTouchHelperCallback;
 import com.zs.helper.myitemtouchhelper.data.Cheeses;
 import com.zs.helper.myitemtouchhelper.listener.ItemDragListener;
+import com.zs.helper.myitemtouchhelper.util.SpaceItemDecoration;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,7 +26,7 @@ public class ItemTouchHelperActivity extends AppCompatActivity implements ItemDr
     private List<String> mData = new ArrayList<>();
     private RecyclerView mRv;
     private ItemTouchHelperAdapter mAdapter;
-    private MyItemTouchHelperCallback mCallback;
+    private ItemTouchHelperCallback mCallback;
     private ItemTouchHelper mItemTouchHelper;
 
     @Override
@@ -58,8 +60,10 @@ public class ItemTouchHelperActivity extends AppCompatActivity implements ItemDr
         mAdapter = new ItemTouchHelperAdapter(mData, this);
         mRv.setLayoutManager(new LinearLayoutManager(this));
         mRv.setAdapter(mAdapter);
+        // 设置 item间隔
+        mRv.addItemDecoration(new SpaceItemDecoration(40));
 
-        mCallback = new MyItemTouchHelperCallback(mAdapter);
+        mCallback = new ItemTouchHelperCallback(mAdapter);
         mItemTouchHelper = new ItemTouchHelper(mCallback);
         mItemTouchHelper.attachToRecyclerView(mRv);
 
@@ -78,7 +82,7 @@ public class ItemTouchHelperActivity extends AppCompatActivity implements ItemDr
             if (position == 0){
                 return;
             }else{
-                Collections.swap(mData, position, position - 1);
+//                Collections.swap(mData, position, position - 1);
                 if (position == 1){
                     moveData();
                 }else{
@@ -89,7 +93,7 @@ public class ItemTouchHelperActivity extends AppCompatActivity implements ItemDr
             if (position == mData.size() - 1){
                 return;
             }else{
-                Collections.swap(mData, position, position + 1);
+//                Collections.swap(mData, position, position + 1);
                 if (position == 0){
                     moveData();
                 }else{
@@ -119,6 +123,7 @@ public class ItemTouchHelperActivity extends AppCompatActivity implements ItemDr
         // reapply the saved position
         if(firstPos >= 0) {
             manager.scrollToPositionWithOffset(firstPos, offsetTop);
+            Log.d("My_Log",mData.toString());
         }
     }
 
