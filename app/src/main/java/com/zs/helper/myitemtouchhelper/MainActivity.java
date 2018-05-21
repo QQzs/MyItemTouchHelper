@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         List<Class> activitys = new ArrayList<>();
         activitys.add(ItemTouchHelperActivity.class);
         activitys.add(GridTouchHelperActivity.class);
+        activitys.add(LinearTouchHelperActivity.class);
 
         listView.setAdapter(new MyAdapter(activitys));
 

@@ -21,6 +21,7 @@
 
         <activity android:name=".GridTouchHelperActivity">
         </activity>
+        <activity android:name=".LinearTouchHelperActivity"></activity>
     </application>
 
 </manifest>
