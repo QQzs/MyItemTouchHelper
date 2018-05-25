@@ -11,7 +11,7 @@ import com.zs.helper.myitemtouchhelper.listener.ItemMoveListener;
 public class ItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
     public static final float ALPHA_FULL = 1.0f;
-    ItemMoveListener mItemMoveListener;
+    public ItemMoveListener mItemMoveListener;
 
     /**
      * 是否关闭 长按 或者 侧滑

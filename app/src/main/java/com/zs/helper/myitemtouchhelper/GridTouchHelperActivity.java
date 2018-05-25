@@ -28,7 +28,7 @@ public class GridTouchHelperActivity extends Activity implements ItemDragListene
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
-        recyclerView = (RecyclerView) findViewById(R.id.rv);
+        recyclerView = findViewById(R.id.rv);
 
         final RecyclerListAdapter adapter = new RecyclerListAdapter(this, this);
 

@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.zs.helper.myitemtouchhelper.adapter.ItemTouchHelperAdapter;
 import com.zs.helper.myitemtouchhelper.callback.ItemTouchHelperCallback;
@@ -28,6 +29,7 @@ public class ItemTouchHelperActivity extends AppCompatActivity implements ItemDr
 
     private List<String> mData = new ArrayList<>();
     private RecyclerView mRv;
+    private TextView mTvAdd;
     private ItemTouchHelperAdapter mAdapter;
     private ItemTouchHelperCallback mCallback;
     private ItemTouchHelper mItemTouchHelper;
@@ -36,7 +38,9 @@ public class ItemTouchHelperActivity extends AppCompatActivity implements ItemDr
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
-        mRv = (RecyclerView) findViewById(R.id.rv);
+        mRv = findViewById(R.id.rv);
+        mTvAdd = findViewById(R.id.tv_add);
+        mTvAdd.setVisibility(View.VISIBLE);
         initData();
         setRecyclerView();
     }

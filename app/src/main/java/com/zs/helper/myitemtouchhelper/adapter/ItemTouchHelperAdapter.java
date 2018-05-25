@@ -110,6 +110,12 @@ public class ItemTouchHelperAdapter extends RecyclerView.Adapter<ItemTouchHelper
         return true;
     }
 
+    @Override
+    public boolean onItemAdd(Object item) {
+
+        return true;
+    }
+
     class ItemTouchHelperViewHolder extends RecyclerView.ViewHolder {
 
         TextView mTvStr;

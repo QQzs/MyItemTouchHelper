@@ -17,7 +17,6 @@
 package com.zs.helper.myitemtouchhelper.adapter;
 
 import android.content.Context;
-import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -69,7 +68,7 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
         holder.handleView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     mDragStartListener.onStartDrags(holder);
                 }
                 return false;
@@ -81,14 +80,19 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
     public boolean onItemRemove(int position) {
         mItems.remove(position);
         notifyItemRemoved(position);
-        return true;
+        return false;
     }
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
         Collections.swap(mItems, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
-        return true;
+        return false;
+    }
+
+    @Override
+    public boolean onItemAdd(Object item) {
+        return false;
     }
 
     @Override
@@ -103,8 +107,8 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
 
         public ItemViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.text);
-            handleView = (ImageView) itemView.findViewById(R.id.handle);
+            textView = itemView.findViewById(R.id.text);
+            handleView = itemView.findViewById(R.id.handle);
         }
 
     }
